@@ -1,0 +1,24 @@
+---
+1:
+  :title: Продукти
+  :categories:
+  - Їжа
+  - Побут
+  :payment_methods:
+  - Готівка
+  - Картка
+  :amount: 500.0
+  :date: '2024-03-01'
+  :notes: Сільпо
+  :status: paid
+3:
+  :title: Квитки на поїзд
+  :categories:
+  - Транспорт
+  - Подорожі
+  :payment_methods:
+  - Картка
+  :amount: 850.0
+  :date: '2024-03-10'
+  :notes: Поїздка до Києва
+  :status: paid
