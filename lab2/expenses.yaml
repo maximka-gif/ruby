@@ -1,0 +1,21 @@
+---
+1: !ruby/object:Expense
+  title: Продукти
+  categories:
+  - Побут
+  payment_methods:
+  - Картка
+  amount: 342.0
+  date: '2024-03-15'
+  notes: Покупка на тиждень
+  status: paid
+2: !ruby/object:Expense
+  title: їжі
+  categories:
+  - їжа
+  payment_methods:
+  - Картка
+  amount: 222.0
+  date: '2024-03-15'
+  notes: ''
+  status: paid
