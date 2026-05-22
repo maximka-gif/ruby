@@ -1,0 +1,16 @@
+<div class="card shadow-sm mx-auto" style="max-width: 500px;">
+  <div class="card-header bg-secondary text-white">
+    <h3 class="h5 mb-0">Категорія</h3>
+  </div>
+  <div class="card-body">
+    <p class="fs-5"><strong>Назва:</strong> <span class="badge bg-dark fs-6"><%= @category.name %></span></p>
+  </div>
+  <div class="card-footer bg-light d-flex justify-content-between align-items-center">
+    <div>
+      <%= link_to "Редагувати", edit_category_path(@category), class: "btn btn-warning btn-sm" %>
+      <%= link_to "Назад", categories_path, class: "btn btn-secondary btn-sm text-white ms-1" %>
+    </div>
+    
+    <%= button_to "Видалити", @category, method: :delete, form: { data: { turbo_confirm: "Ви впевнені, що хочете видалити цю категорію?" } }, class: "btn btn-danger btn-sm" %>
+  </div>
+</div>

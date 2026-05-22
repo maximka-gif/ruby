@@ -1,0 +1,21 @@
+<%= form_with(model: category, local: true) do |form| %>
+  <% if category.errors.any? %>
+    <div class="alert alert-danger">
+      <h5 class="alert-heading">Помилка збереження:</h5>
+      <ul>
+        <% category.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3" style="max-width: 400px;">
+    <%= form.label :name, "Назва категорії", class: "form-label fw-bold" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Наприклад: Продукти, Комуналка" %>
+  </div>
+
+  <div class="mt-3">
+    <%= form.submit "Зберегти", class: "btn btn-primary" %>
+  </div>
+<% end %>

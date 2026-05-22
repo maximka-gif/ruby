@@ -1,0 +1,9 @@
+<h1><%= @expense.title %></h1>
+<p><strong>Категорія:</strong> <%= @expense.category %></p>
+<p><strong>Сума:</strong> <%= @expense.amount %> грн</p>
+<p><strong>Дата:</strong> <%= @expense.date %></p>
+<p><strong>Статус:</strong> <%= @expense.status %></p>
+
+<%= link_to "Редагувати", edit_expense_path(@expense) %> |
+<%= button_to "Видалити", @expense, method: :delete, form: { data: { turbo_confirm: "Впевнені?" } } %> |
+<%= link_to "Назад", expenses_path %>

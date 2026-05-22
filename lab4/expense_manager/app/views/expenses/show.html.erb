@@ -1,0 +1,37 @@
+<div class="card shadow-sm mx-auto" style="max-width: 600px;">
+  <div class="card-header bg-dark text-white">
+    <h3 class="h5 mb-0">Деталі витрати: <%= @expense.title %></h3>
+  </div>
+  <div class="card-body">
+    <table class="table table-borderless mb-0">
+      <tr>
+        <td class="fw-bold text-muted" style="width: 35%;">Категорія:</td>
+        <td><span class="badge bg-secondary fs-6"><%= @expense.category %></span></td>
+      </tr>
+      <tr>
+        <td class="fw-bold text-muted">Сума:</td>
+        <td><%= amount_badge(@expense) %></td>
+      </tr>
+      <tr>
+        <td class="fw-bold text-muted">Дата:</td>
+        <td><%= @expense.date.strftime("%d.%m.%Y") if @expense.date %></td>
+      </tr>
+      <tr>
+        <td class="fw-bold text-muted">Метод оплати:</td>
+        <td><%= @expense.payment_method.presence || "—" %></td>
+      </tr>
+      <tr>
+        <td class="fw-bold text-muted">Статус:</td>
+        <td><span class="text-uppercase small fw-bold bg-light p-1 border rounded"><%= @expense.status %></span></td>
+      </tr>
+      <tr>
+        <td class="fw-bold text-muted">Нотатки:</td>
+        <td><div class="p-2 bg-light rounded text-secondary"><%= @expense.notes.presence || "Немає нотаток" %></div></td>
+      </tr>
+    </table>
+  </div>
+  <div class="card-footer bg-light d-flex justify-content-between">
+    <%= link_to "Редагувати", edit_expense_path(@expense), class: "btn btn-warning" %>
+    <%= link_to "Назад до списку", expenses_path, class: "btn btn-secondary text-white" %>
+  </div>
+</div>

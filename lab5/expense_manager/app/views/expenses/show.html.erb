@@ -1,0 +1,62 @@
+<div class="card shadow-sm mx-auto" style="max-width: 600px;">
+  <div class="card-header bg-dark text-white">
+    <h3 class="h5 mb-0">Деталі витрати: <%= @expense.title %></h3>
+  </div>
+  <div class="card-body">
+    <table class="table table-borderless mb-0">
+      <tr>
+        <td class="fw-bold text-muted" style="width: 35%;">Категорія:</td>
+        <td><span class="badge bg-secondary fs-6"><%= @expense.category %></span></td>
+      </tr>
+      <tr>
+        <td class="fw-bold text-muted">Магазин:</td>
+        <td><%= @expense.merchant.presence || "—" %></td>
+      </tr>
+      <tr>
+        <td class="fw-bold text-muted">Сума:</td>
+        <td><%= amount_badge(@expense) %></td>
+      </tr>
+      <tr>
+        <td class="fw-bold text-muted">Дата:</td>
+        <td><%= @expense.date.strftime("%d.%m.%Y") if @expense.date %></td>
+      </tr>
+      <tr>
+        <td class="fw-bold text-muted">Метод оплати:</td>
+        <td><%= @expense.payment_method.presence || "—" %></td>
+      </tr>
+      <tr>
+        <td class="fw-bold text-muted">Статус:</td>
+        <td><span class="text-uppercase small fw-bold bg-light p-1 border rounded"><%= @expense.status %></span></td>
+      </tr>
+      <tr>
+        <td class="fw-bold text-muted">Нотатки:</td>
+        <td><div class="p-2 bg-light rounded text-secondary"><%= @expense.notes.presence || "Немає нотаток" %></div></td>
+      </tr>
+    </table>
+  </div>
+  <div class="card-footer bg-light d-flex justify-content-between">
+    <%= link_to "Редагувати", edit_expense_path(@expense), class: "btn btn-warning" %>
+    <%= link_to "Назад до списку", expenses_path, class: "btn btn-secondary text-white" %>
+  </div>
+
+  <div class="p-3 bg-white border-top">
+  <h5>Способи оплати цієї витрати (Дочірня модель)</h5>
+  <ul class="list-group mb-3">
+    <% PaymentMethod.where(expense_id: @expense.id).each do |pm| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= pm.name %>
+        <%= button_to "Видалити", payment_method_path(pm), method: :delete, class: "btn btn-sm btn-link text-danger p-0" %>
+      </li>
+    <% end %>
+  </ul>
+
+  <h6>Додати новий спосіб:</h6>
+  <%= form_with(model: PaymentMethod.new, local: true) do |f| %>
+    <%= f.hidden_field :expense_id, value: @expense.id %>
+    <div class="input-group">
+      <%= f.text_field :name, class: "form-control", placeholder: "Наприклад: Готівка, Кредитка", required: true %>
+      <%= f.submit "Додати", class: "btn btn-outline-success" %>
+    </div>
+  <% end %>
+</div>
+</div>

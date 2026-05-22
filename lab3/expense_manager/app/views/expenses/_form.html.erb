@@ -1,0 +1,30 @@
+<%= form_with(model: expense) do |f| %>
+  <div>
+    <%= f.label :title, "Назва" %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :category, "Категорія" %><br>
+    <%= f.select :category, Category.pluck(:name) %>
+  </div>
+
+  <div>
+    <%= f.label :amount, "Сума" %><br>
+    <%= f.number_field :amount, step: 0.01 %>
+  </div>
+
+  <div>
+    <%= f.label :date, "Дата" %><br>
+    <%= f.date_field :date %>
+  </div>
+
+  <div>
+    <%= f.label :status, "Статус" %><br>
+    <%= f.select :status, Expense.statuses.keys %>
+  </div>
+
+  <div>
+    <%= f.submit "Зберегти" %>
+  </div>
+<% end %>

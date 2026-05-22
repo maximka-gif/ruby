@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="display-6 m-0">Менеджер витрат</h1>
+  <%= link_to "Додати витрату", new_expense_path, class: "btn btn-primary shadow-sm" %>
+</div>
+
+<div class="card shadow-sm">
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle mb-0">
+      <thead class="table-dark">
+        <tr>
+          <th>Назва</th>
+          <th>Категорія</th>
+          <th>Сума</th>
+          <th>Дата</th>
+          <th>Статус</th>
+          <th class="text-end">Дії</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @expenses.each do |expense| %>
+          <tr>
+            <td><strong><%= link_to expense.title, expense, class: "text-dark text-decoration-none" %></strong></td>
+            <td><span class="badge bg-secondary"><%= expense.category %></span></td>
+            <td><%= amount_badge(expense) %></td>
+            <td><%= expense.date.strftime("%d.%m.%Y") if expense.date %></td>
+            <td><span class="text-uppercase small fw-bold text-muted"><%= expense.status %></span></td>
+            <td class="text-end">
+              <%= link_to "Редагувати", edit_expense_path(expense), class: "btn btn-sm btn-outline-warning" %>
+              <%= button_to "Видалити", expense, method: :delete, form: { data: { turbo_confirm: "Ви впевнені?" }, class: "d-inline-block" }, class: "btn btn-sm btn-outline-danger ms-1" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

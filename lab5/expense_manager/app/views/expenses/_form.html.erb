@@ -1,0 +1,46 @@
+<%= form_with(model: expense, local: true) do |f| %>
+  <div class="mb-3">
+    <%= f.label :title, "Назва витрати", class: "form-label fw-bold" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :category, "Категорія", class: "form-label fw-bold" %>
+    <%= f.select :category, Category.pluck(:name), {}, { class: "form-select" } %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :merchant, "Магазин / Торговець", class: "form-label fw-bold" %>
+    <%= f.text_field :merchant, class: "form-control", placeholder: "Наприклад: Сільпо, АЗС Окко" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :amount, "Сума (грн)", class: "form-label fw-bold" %>
+    <%= f.number_field :amount, step: 0.01, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :date, "Дата", class: "form-label fw-bold" %>
+    <%= f.date_field :date, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :payment_method, "Метод оплати", class: "form-label fw-bold" %>
+    <%= f.text_field :payment_method, class: "form-control", placeholder: "Картка, готівка..." %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :notes, "Нотатки", class: "form-label fw-bold" %>
+    <%= f.text_area :notes, class: "form-control", rows: 3 %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :status, "Статус", class: "form-label fw-bold" %>
+    <%= f.select :status, Expense.statuses.keys, {}, { class: "form-select" } %>
+  </div>
+
+  <div class="mt-4">
+    <%= f.submit "Зберегти витрату", class: "btn btn-primary px-4" %>
+    <%= link_to "Скасувати", expenses_path, class: "btn btn-outline-secondary ms-2" %>
+  </div>
+<% end %>

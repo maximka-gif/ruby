@@ -1,0 +1,10 @@
+<div class="card shadow-sm p-4 mx-auto" style="max-width: 500px;">
+  <h2 class="h4 mb-3">Редагувати категорію</h2>
+  <%= render "form", category: @category %>
+  
+  <hr>
+  <div class="d-flex justify-content-between">
+    <%= link_to "Переглянути", @category, class: "btn btn-sm btn-outline-info" %>
+    <%= link_to "Назад до списку", categories_path, class: "btn btn-sm btn-outline-secondary" %>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<h1>Витрати</h1>
+<%= link_to "Додати витрату", new_expense_path %> |
+<%= link_to "Тільки оплачені", paid_expenses_path %> |
+<%= link_to "Категорії", categories_path %>
+
+<ul>
+  <% @expenses.each do |expense| %>
+    <li>
+      <%= link_to expense.title, expense %> 
+      (<%= expense.amount %> грн) — Статус: <%= expense.status %>
+    </li>
+  <% end %>
+</ul>
